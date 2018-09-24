@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Tweets from "../components/Tweets";
+import Instagram from "../components/Instagram";
+import ManualMessage from "../components/ManualMessage";
 import "./App.css";
 
 class App extends Component {
@@ -9,26 +12,14 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
-    fetch("http://private-cc77e-aff.apiary-mock.com/posts")
-      .then(d => d.json())
-      .then((d, id) => {
-        let posts = d.items.map(post => {
-          this.setState({ posts: post });
-        });
-        console.log(this.state.posts);
-      });
-  }
-
   render() {
     let posts = this.state.posts;
     return (
-      <ul>
-        <div key={posts.item_id}>
-          <h2>{posts.item_created}</h2>
-          <p>{posts.item_source_id}</p>
-        </div>
-      </ul>
+      <div>
+        <ManualMessage />
+        <Instagram />
+        <Tweets />
+      </div>
     );
   }
 }
